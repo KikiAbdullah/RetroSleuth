@@ -1,0 +1,26 @@
+{
+  "id": "budi",
+  "name": "Budi",
+  "age": 61,
+  "role": "Kepala Pelayan",
+  "occupation": "Kepala Pelayan",
+  "relationship_to_victim": "Kepala Pelayan",
+  "background": "Setia, tapi dendam karena Haryanto menolak biaya pengobatan anaknya yang sakit. Ingin menjebak Sari.",
+  "personality": "Pendiam, formal, pahit",
+  "voice_style": "Singkat, hormat, pahit",
+  "alibi": "Di dapur dan berkeliling memeriksa keamanan.",
+  "public_background": "Pelayan setia, 30 tahun mengabdi.",
+  "private_background": "Anaknya meninggal karena Haryanto tak memberi uang pengobatan.",
+  "known_facts": ["Sari membawa brandy", "Mendengar pertengkaran"],
+  "truths": ["Menemukan mayat pukul 02.00 setelah menunggu", "Membersihkan gelas lain"],
+  "secrets": [
+    { "id": "dendam_anak", "condition": "Pemain bertanya keluarga/motivasi", "detail": "Anaknya meninggal, ingin Haryanto menderita." },
+    { "id": "melihat_racun", "condition": "Pemain menunjukkan bukti sianida", "detail": "Melihat Sari menaruh sesuatu ke gelas." }
+  ],
+  "reactions_to_evidence": {
+    "laporan_otopsi": "Keadilan...",
+    "surat_ancaman": "Saya tidak mengancam, saya hanya menunggu takdir."
+  },
+  "emotional_state": { "stress": 5, "trust": 50, "fear": 10, "anger": 30 },
+  "can_be_culprit": false
+}

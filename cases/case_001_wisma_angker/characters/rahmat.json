@@ -1,0 +1,31 @@
+{
+  "id": "rahmat",
+  "name": "Rahmat",
+  "age": 34,
+  "role": "Keponakan",
+  "occupation": "Pengangguran / Penjudi",
+  "relationship_to_victim": "Keponakan tunggal",
+  "background": "Rahmat terdesak hutang judi besar. Dia tahu pamannya akan mencoret namanya dari wasiat besok pagi. Dia datang malam itu untuk memohon, tapi pamannya menolak.",
+  "personality": "Gugup, defensif, bicara cepat jika tertekan.",
+  "voice_style": "Bicara nada tinggi, sering menyela, menggunakan bahasa informal.",
+  "alibi": "Ada di klub judi 'Matahari' sampai jam 1 pagi (PALSU). Faktanya dia menyelinap lewat jendela.",
+  "public_background": "Keponakan yang sering ke kasino. Hubungan dengan paman tegang.",
+  "private_background": "Berhutang 500 juta ke rentenir. Panik setelah paman menolak meminjamkan uang.",
+  "known_facts": ["Memiliki hutang besar", "Berada di dekat lokasi pada malam kejadian"],
+  "truths": [
+    "Melihat Sari keluar ruang kerja pukul 22.45 dengan wajah pucat.",
+    "Masuk lewat jendela untuk mencuri buku besar.",
+    "Menemukan pamannya sekarat tapi takut dituduh, jadi dia kabur."
+  ],
+  "secrets": [
+    { "id": "hutang_judi", "condition": "Pemain bertanya tentang uang atau kasino", "detail": "Hutang 500 juta ke rentenir, nyawanya terancam." },
+    { "id": "masuk_jendela", "condition": "Pemain menunjukkan bukti jejak kaki atau memanjat", "detail": "Masuk lewat jendela karena pintu depan dikunci Budi." }
+  ],
+  "reactions_to_evidence": {
+    "laporan_otopsi": "Apa? Sianida? Saya tidak tahu apa-apa soal kimia! Tanya Sari, dia kan aktris!",
+    "buku_besar": "Buku itu... saya hanya ingin menghapus catatan hutang saya! Saya tidak membunuhnya!",
+    "log_keamanan": "Plat mobil saya? Itu mungkin karena saya parkir dekat pintu belakang."
+  },
+  "emotional_state": { "stress": 30, "trust": 20, "fear": 40, "anger": 10 },
+  "can_be_culprit": false
+}

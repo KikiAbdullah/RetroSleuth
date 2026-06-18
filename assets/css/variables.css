@@ -1,0 +1,21 @@
+:root {
+  --bg-terminal: #030a02;
+  --text-primary: #33ff33;
+  --text-dim: #11aa11;
+  --text-highlight: #88ff88;
+  --border-retro: #22aa22;
+  --window-header: #114411;
+  --window-header-text: #33ff33;
+  --desktop-bg: #808080;
+  --window-bg: #ffffff;
+  --window-border-light: #c0c0c0;
+  --window-border-dark: #000000;
+  --titlebar-bg: #000080;
+  --titlebar-text: #ffffff;
+  --taskbar-bg: #c0c0c0;
+  --taskbar-button: #ffffff;
+  --font-mono: "VT323", "Courier New", monospace;
+  --font-size-base: 16px;
+  --scanline-opacity: 0.15;
+  --crt-flicker-duration: 0.1s;
+}

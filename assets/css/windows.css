@@ -1,0 +1,117 @@
+.retro-window {
+  position: absolute;
+  min-width: 350px;
+  min-height: 250px;
+  border: 2px solid #000;
+  background: var(--window-bg);
+  box-shadow: inset -1px -1px 0 #000, inset 1px 1px 0 #fff, 2px 2px 0 rgba(0,0,0,0.5);
+  display: none;
+  flex-direction: column;
+  z-index: 100;
+  font-family: var(--font-mono);
+}
+
+.retro-window.active {
+  z-index: 200;
+}
+
+.retro-window.minimized {
+  display: none;
+}
+
+.window-header {
+  background: var(--titlebar-bg);
+  color: var(--titlebar-text);
+  padding: 4px 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: default;
+  user-select: none;
+  height: 28px;
+}
+
+.retro-window.active .window-header {
+  background: var(--titlebar-bg);
+}
+
+.retro-window:not(.active) .window-header {
+  background: #808080;
+}
+
+.window-icon {
+  font-size: 16px;
+  margin-right: 4px;
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+  line-height: 1;
+  vertical-align: middle;
+}
+.window-title {
+  font-weight: bold;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-right: 10px;
+  vertical-align: middle;
+}
+
+.window-controls {
+  display: flex;
+  gap: 2px;
+}
+
+.window-btn {
+  width: 18px;
+  height: 18px;
+  background: #c0c0c0;
+  border: 1px solid #000;
+  box-shadow: inset 1px 1px 0 #fff, inset -1px -1px 0 #808080;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  color: #000;
+}
+
+.window-btn:active {
+  box-shadow: inset -1px -1px 0 #fff, inset 1px 1px 0 #808080;
+}
+
+.window-btn.close-btn:hover {
+  background: #ff0000;
+  color: #fff;
+}
+
+.window-body {
+  padding: 10px;
+  flex-grow: 1;
+  overflow: auto;
+  background: #fff;
+  color: #000;
+  border: 2px inset #c0c0c0;
+}
+
+.window-body.terminal {
+  background: var(--bg-terminal);
+  color: var(--text-primary);
+  border: none;
+  padding: 15px;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.window-body.terminal .cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background-color: var(--text-primary);
+  animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}

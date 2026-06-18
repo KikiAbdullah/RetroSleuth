@@ -1,0 +1,54 @@
+.evidence-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 15px;
+  padding: 10px;
+}
+
+.evidence-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px outset #c0c0c0;
+  background: #d0d0d0;
+  padding: 10px;
+  cursor: pointer;
+  text-align: center;
+  user-select: none;
+}
+
+.evidence-card:active {
+  border: 2px inset #c0c0c0;
+}
+
+.evidence-card.locked {
+  filter: grayscale(1);
+  opacity: 0.7;
+}
+
+.evidence-icon {
+  font-size: 32px;
+  margin-bottom: 5px;
+}
+
+.evidence-title {
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.lock-overlay {
+  font-size: 10px;
+  color: #800000;
+  margin-top: 5px;
+}
+
+.evidence-detail-window {
+  font-family: var(--font-mono);
+  line-height: 1.5;
+}
+
+.evidence-detail-window h1 {
+  border-bottom: 2px solid #000;
+  margin-bottom: 10px;
+  padding-bottom: 5px;
+}

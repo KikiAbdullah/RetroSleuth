@@ -1,0 +1,59 @@
+{
+  "id": "case_001_wisma_angker",
+  "meta": {
+    "title": "Malam di Wisma Angker",
+    "author": "Tim RetroSleuth",
+    "version": "1.0",
+    "difficulty": "Medium",
+    "estimated_time": "45-60 min",
+    "year": 1979
+  },
+  "victim": {
+    "name": "Haryanto Wijaya",
+    "age": 62,
+    "occupation": "Pengusaha Tekstil",
+    "cause_of_death": "Keracunan Sianida",
+    "time_of_death": "Antara pukul 22.30 dan 00.00",
+    "location": "Ruang Kerja, Wisma Angker"
+  },
+  "assets": {
+    "briefing_file": "briefing.md",
+    "evidence_directory": "evidence",
+    "character_directory": "characters",
+    "images_directory": "images"
+  },
+  "evidence_registry": [
+    { "id": "laporan_otopsi", "title": "Laporan Otopsi", "file": "laporan_otopsi.md", "icon": "📄" },
+    { "id": "buku_besar", "title": "Buku Besar", "file": "buku_besar.md", "icon": "📒" },
+    { "id": "log_keamanan", "title": "Log Keamanan", "file": "log_keamanan.md", "icon": "🛡️" },
+    { "id": "surat_ancaman", "title": "Surat Ancaman", "file": "surat_ancaman.md", "icon": "✉️" },
+    { "id": "laporan_saksi", "title": "Laporan Saksi", "file": "laporan_saksi.md", "icon": "👥" }
+  ],
+  "characters": [
+    { "id": "rahmat", "name": "Rahmat", "role": "Keponakan" },
+    { "id": "sari", "name": "Sari", "role": "Istri Korban" },
+    { "id": "budi", "name": "Budi", "role": "Kepala Pelayan" }
+  ],
+  "solution_matrix": {
+    "culprit_id": "sari",
+    "motive": "Warisan dan dendam",
+    "primary_evidence": "laporan_otopsi",
+    "secondary_evidence": ["buku_besar", "log_keamanan"],
+    "explanation_file": "solution.md"
+  },
+  "timeline": [
+    { "time": "21:30", "description": "Haryanto masuk ke ruang kerja sendirian." },
+    { "time": "22:00", "description": "Sari membawakan baki minuman brandy ke ruang kerja." },
+    { "time": "22:15", "description": "Budi mendengar suara gelas pecah dari luar ruangan." },
+    { "time": "22:45", "description": "Seseorang terlihat memanjat jendela sayap timur." },
+    { "time": "02:00", "description": "Budi menemukan jenazah Haryanto." }
+  ],
+  "objectives": [
+    { "id": "obj_1", "text": "Baca laporan briefing kasus", "hint": "Cari di Case Files" },
+    { "id": "obj_2", "text": "Periksa laporan otopsi korban", "hint": "Buka Evidence Locker" },
+    { "id": "obj_3", "text": "Interogasi Rahmat tentang alibinya", "hint": "Gunakan Interrogation Room" },
+    { "id": "obj_4", "text": "Cari rekaman log keamanan", "hint": "Buka Evidence Locker" },
+    { "id": "obj_5", "text": "Ajukan tuduhan terhadap pelaku", "hint": "Gunakan Accusation Form" }
+  ]
+}
+

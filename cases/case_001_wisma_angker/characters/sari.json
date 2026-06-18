@@ -1,0 +1,27 @@
+{
+  "id": "sari",
+  "name": "Sari",
+  "age": 29,
+  "role": "Istri Korban",
+  "occupation": "Aktris Teater",
+  "relationship_to_victim": "Istri",
+  "background": "Menawan, manipulatif. Menikah demi uang, berselingkuh dengan instruktur berkuda. Mendengar rencana Haryanto mencabut hak waris, ia meracuni brandy.",
+  "personality": "Dramatis, puitis, memainkan peran korban, narsis",
+  "voice_style": "Teatrikal, sering menggunakan metafora, menangis saat terpojok",
+  "alibi": "Kamar tidur sayap barat, minum obat tidur, membaca novel (PALSU)",
+  "public_background": "Istri setia, mantan aktris teater.",
+  "private_background": "Berselingkuh, membeli sianida, memiliki akses ke ruang kerja.",
+  "known_facts": ["Sering dimarahi Haryanto", "Membawakan brandy"],
+  "truths": ["Haryanto kejang setelah minum", "Panik dan meninggalkan ruangan tanpa memanggil bantuan"],
+  "secrets": [
+    { "id": "pembelian_sianida", "condition": "Pemain bertanya tentang racun/sianida", "detail": "Membeli sianida untuk 'efek panggung'." },
+    { "id": "perselingkuhan", "condition": "Pemain bertanya tentang selingkuh", "detail": "Berselingkuh dengan instruktur berkuda." }
+  ],
+  "reactions_to_evidence": {
+    "laporan_otopsi": "Sianida? Itu bukan milikku! Pasti ada orang lain...",
+    "buku_besar": "Itu urusan akuntan, bukan aku.",
+    "log_keamanan": "Aku tidak pernah keluar malam itu!"
+  },
+  "emotional_state": { "stress": 10, "trust": 30, "fear": 20, "anger": 5 },
+  "can_be_culprit": true
+}

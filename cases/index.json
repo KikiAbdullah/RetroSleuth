@@ -1,0 +1,16 @@
+{
+  "engine_version": "2.0.0",
+  "total_cases": 1,
+  "cases_list": [
+    {
+      "id": "case_001_wisma_angker",
+      "folder": "case_001_wisma_angker",
+      "title": "Malam di Wisma Angker",
+      "year": "1979",
+      "difficulty": "AMATEUR_SLEUTH",
+      "estimated_playtime_minutes": 45,
+      "is_active": true,
+      "description_short": "Seorang pengusaha kaya ditemukan tewas di ruang kerjanya yang terkunci."
+    }
+  ]
+}
