@@ -27,5 +27,6 @@
     "log_keamanan": "Plat mobil saya? Itu mungkin karena saya parkir dekat pintu belakang."
   },
   "emotional_state": { "stress": 30, "trust": 20, "fear": 40, "anger": 10 },
-  "can_be_culprit": false
+  "can_be_culprit": false,
+  "reveals_evidence": ["buku_besar"]
 }

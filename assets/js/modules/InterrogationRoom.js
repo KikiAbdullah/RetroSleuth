@@ -1,7 +1,6 @@
 import { aiClient } from '../ai/AIClient.js';
 import { gameState } from '../core/Store.js';
 import { eventBus } from '../core/EventBus.js';
-import { typewrite } from '../utils/Typewriter.js';
 import { getFallbackResponse } from '../ai/FallbackMode.js';
 
 export class InterrogationRoom {
@@ -13,6 +12,8 @@ export class InterrogationRoom {
     this.inputField = null;
     this.sendBtn = null;
     this.evidenceStrip = null;
+    this.loadingElement = null;
+    this.spinnerInterval = null;
     
     eventBus.on('interrogation:start', (suspectId) => {
       this.open(suspectId);
@@ -92,6 +93,48 @@ export class InterrogationRoom {
     this._renderEvidenceStrip(suspectId);
   }
 
+  _showLoading() {
+    if (!this.chatContainer) return;
+    this._hideLoading();
+
+    const loadingEl = document.createElement('div');
+    loadingEl.id = 'ai-loading';
+    loadingEl.className = 'loading-indicator';
+    
+    const spinner = document.createElement('span');
+    spinner.className = 'loading-spinner';
+    spinner.textContent = '|';
+    
+    const text = document.createElement('span');
+    text.className = 'thinking-text';
+    text.textContent = 'Memproses deduksi...';
+    
+    loadingEl.appendChild(spinner);
+    loadingEl.appendChild(text);
+    this.chatContainer.appendChild(loadingEl);
+    this.chatContainer.scrollTop = this.chatContainer.scrollHeight;
+    
+    const chars = ['|', '/', '-', '\\'];
+    let idx = 0;
+    this.spinnerInterval = setInterval(() => {
+      spinner.textContent = chars[idx % chars.length];
+      idx++;
+    }, 150);
+    
+    this.loadingElement = loadingEl;
+  }
+
+  _hideLoading() {
+    if (this.spinnerInterval) {
+      clearInterval(this.spinnerInterval);
+      this.spinnerInterval = null;
+    }
+    if (this.loadingElement) {
+      this.loadingElement.remove();
+      this.loadingElement = null;
+    }
+  }
+
   _restoreChatHistory() {
     if (!this.chatContainer) return;
     const history = gameState.getChatHistory(this.currentSuspectId) || [];
@@ -141,33 +184,51 @@ export class InterrogationRoom {
   }
 
   _setupEventListeners(suspectId) {
-    const handleSend = async () => {
-      const text = this.inputField.value.trim();
-      if (!text) return;
-      this.inputField.value = '';
-      this.inputField.disabled = true;
-      this.sendBtn.disabled = true;
+    this.sendBtn.onclick = () => this._sendMessage();
+    this.inputField.onkeypress = (e) => { if (e.key === 'Enter') this._sendMessage(); };
+  }
 
-      gameState.addChatMessage(suspectId, { role: 'user', content: text });
-      this._appendMessageBubble('user', text, false);
+  async _sendMessage() {
+    const text = this.inputField.value.trim();
+    if (!text) return;
+    this.inputField.value = '';
+    this.inputField.disabled = true;
+    this.sendBtn.disabled = true;
 
-      const result = await aiClient.sendMessage(suspectId, text);
+    gameState.addChatMessage(this.currentSuspectId, { role: 'user', content: text });
+    this._appendMessageBubble('user', text, false);
+
+    this._showLoading();
+
+    try {
+      const result = await aiClient.sendMessage(this.currentSuspectId, text);
+      this._hideLoading();
       
       if (!result.success) {
-        const fallback = getFallbackResponse(suspectId);
-        gameState.addChatMessage(suspectId, { role: 'assistant', content: `[ERROR] ${fallback}` });
+        const fallback = getFallbackResponse(this.currentSuspectId);
+        gameState.addChatMessage(this.currentSuspectId, { role: 'assistant', content: `[ERROR] ${fallback}` });
         this._appendMessageBubble('assistant', `[ERROR] ${fallback}`, false);
       } else {
         this._appendMessageBubble('assistant', result.reply, true);
+        
+        // Cek reveals_evidence
+        const suspect = gameState.state.activeCase.characters.find(c => c.id === this.currentSuspectId);
+        if (suspect?.reveals_evidence && !gameState.state.interrogationFirstDone[this.currentSuspectId]) {
+          gameState.state.interrogationFirstDone[this.currentSuspectId] = true;
+          suspect.reveals_evidence.forEach(id => gameState.addEvidence(id));
+          gameState.save();
+          this._renderEvidenceStrip(this.currentSuspectId);
+        }
       }
-
+    } catch (error) {
+      this._hideLoading();
+      this._appendMessageBubble('system', 'Gagal menghubungi AI.', false);
+    } finally {
       this.inputField.disabled = false;
       this.sendBtn.disabled = false;
       this.inputField.focus();
-    };
-
-    this.sendBtn.onclick = handleSend;
-    this.inputField.onkeypress = (e) => { if (e.key === 'Enter') handleSend(); };
+      this._updateEmotionBars();
+    }
   }
 
   _renderEvidenceStrip(suspectId) {
@@ -190,7 +251,10 @@ export class InterrogationRoom {
         gameState.addChatMessage(suspectId, { role: 'system', content: `*Anda menunjukkan: ${ev.title}*` });
         this._appendMessageBubble('system', `*Anda menunjukkan: ${ev.title}*`, false);
         
+        this._showLoading();
         const result = await aiClient.sendMessage(suspectId, '', evId);
+        this._hideLoading();
+        
         if (!result.success) {
           gameState.addChatMessage(suspectId, { role: 'assistant', content: '[ERROR] AI Offline' });
           this._appendMessageBubble('assistant', '[ERROR] AI Offline', false);

@@ -107,17 +107,24 @@ export class EvidenceFileManager {
     const folder = folders.find(f => f.name === this.currentFolder);
     if (!folder) return;
 
+    // Filter hanya bukti yang sudah ditemukan
+    const discoveredIds = gameState.state.discoveredEvidence || [];
+    const itemsToShow = folder.items.filter(id => discoveredIds.includes(id));
+
+    if (itemsToShow.length === 0) {
+      this.filePaneEl.innerHTML = `<p style="padding: 20px; color: #888;">Folder kosong – lanjutkan investigasi.</p>`;
+      return;
+    }
+
     let html = '<ul class="efm-filelist">';
-    folder.items.forEach(id => {
+    itemsToShow.forEach(id => {
       const evidence = this._getEvidenceById(id);
       if (!evidence) return;
       
-      const isDiscovered = gameState.state.discoveredEvidence.includes(id);
-      const isAnalyzed = gameState.state.analyzedEvidence.includes(id);
-      const statusIcon = isAnalyzed ? '✅' : (isDiscovered ? '🔍' : '🔒');
-      const cssClass = isDiscovered ? 'efm-file-item unlocked' : 'efm-file-item locked';
+      const isAnalyzed = gameState.state.analyzedEvidence?.includes(id);
+      const statusIcon = isAnalyzed ? '✅' : '🔍';
       
-      html += `<li class="${cssClass}" data-evidence-id="${id}">
+      html += `<li class="efm-file-item unlocked" data-evidence-id="${id}">
         <span class="efm-file-icon">${evidence.icon || '📄'}</span>
         <span class="efm-file-name">${evidence.title}</span>
         <span class="efm-file-status">${statusIcon}</span>
@@ -125,9 +132,11 @@ export class EvidenceFileManager {
     });
     html += '</ul>';
     this.filePaneEl.innerHTML = html;
-    
+
+    // Event listener untuk item yang sudah ditemukan
     this.filePaneEl.querySelectorAll('.efm-file-item.unlocked').forEach(item => {
       item.addEventListener('click', () => this._onFileClick(item.dataset.evidenceId));
+      item.style.cursor = 'pointer';
     });
   }
 

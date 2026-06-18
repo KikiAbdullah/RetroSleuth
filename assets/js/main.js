@@ -12,6 +12,7 @@ import { AccusationForm } from './modules/AccusationForm.js';
 import { NotesApp } from './modules/NotesApp.js';
 import { TimelineEngine } from './engine/TimelineEngine.js';
 import { ObjectivesTracker } from './modules/ObjectivesTracker.js';
+import { CrimeSceneViewer } from './modules/CrimeSceneViewer.js';
 import { gameState } from './core/Store.js';
 import { markdown } from './utils/Markdown.js';
 import { DatabaseManager } from './utils/DatabaseManager.js';
@@ -83,6 +84,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   const notesApp = new NotesApp(windowManager);
   const timelineEngine = new TimelineEngine(windowManager);
   const objectivesTracker = new ObjectivesTracker(windowManager);
+  const crimeSceneViewer = new CrimeSceneViewer(windowManager);
 
   // Register windows
   const windowConfigs = [
@@ -93,7 +95,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     { id: 'objectives', title: 'Objectives', icon: '📋', content: '<p>Memuat tugas...</p>' },
     { id: 'interrogation', title: 'Interrogation Room', icon: '💬', content: '<p>Select a suspect to interrogate.</p>', type: 'terminal' },
     { id: 'notes', title: 'Detective Notes', icon: '📝', content: '<p>Memuat catatan...</p>' },
-    { id: 'accusation', title: 'Submit Accusation', icon: '⚖️', content: '<p>Memuat formulir...</p>' }
+    { id: 'accusation', title: 'Submit Accusation', icon: '⚖️', content: '<p>Memuat formulir...</p>' },
+    { id: 'crime-scene', title: 'Crime Scene', icon: '🔎', content: '<p>Memuat TKP...</p>' }
   ];
 
   windowConfigs.forEach(cfg => windowManager.register(cfg.id, cfg));
@@ -112,6 +115,14 @@ document.addEventListener('DOMContentLoaded', async () => {
       if (win) {
         evidenceFM.open(win.body);
         windowManager.open('evidence');
+      }
+    }
+    else if (id === 'crime-scene') {
+      const caseData = caseHub.currentCase;
+      if (caseData) {
+        crimeSceneViewer.open(caseData);
+      } else {
+        alert('Silakan pilih kasus terlebih dahulu.');
       }
     }
     else if (id === 'notes') notesApp.open();
@@ -159,7 +170,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const { folder } = data;
     try {
       const fullCase = await caseLoader.loadFullCase(folder);
-      await gameState.setCase(fullCase);
+      gameState.setCase(fullCase);
     } catch (e) {
       alert("Gagal memuat kasus.");
     }
@@ -180,7 +191,7 @@ async function checkAndLoadInitialCase(caseLoader) {
     if (availableCases.length === 1) {
       const folder = availableCases[0].folder;
       const fullCase = await caseLoader.loadFullCase(folder);
-      await gameState.setCase(fullCase);
+      gameState.setCase(fullCase);
     }
   } catch (error) {
     console.error("Gagal memeriksa kasus awal:", error);

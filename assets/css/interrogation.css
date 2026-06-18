@@ -126,21 +126,37 @@
   transform: none;
 }
 
-.loading-dots {
-  padding: 5px;
-  color: var(--text-dim);
+.loading-indicator {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 12px;
+  margin-bottom: 8px;
+  color: var(--text-primary);
+  font-family: var(--font-mono);
+  font-size: 13px;
+  background: rgba(0, 20, 0, 0.8);
+  border: 1px solid var(--border-retro);
+  border-radius: 4px;
+  max-width: 250px;
+  align-self: flex-start;
 }
 
-.loading-dots::after {
-  content: "...";
-  animation: dots 1.5s steps(4, end) infinite;
+.loading-spinner {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 16px;
+  width: 20px;
+  text-align: center;
 }
 
-@keyframes dots {
-  0%, 20% { content: ""; }
-  40% { content: "."; }
-  60% { content: ".."; }
-  80% { content: "..."; }
+.thinking-text {
+  animation: blink 0.8s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
 .error-message {

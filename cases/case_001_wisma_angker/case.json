@@ -41,6 +41,7 @@
     "secondary_evidence": ["buku_besar", "log_keamanan"],
     "explanation_file": "solution.md"
   },
+  "initial_evidence": ["laporan_otopsi"],
   "timeline": [
     { "time": "21:30", "description": "Haryanto masuk ke ruang kerja sendirian." },
     { "time": "22:00", "description": "Sari membawakan baki minuman brandy ke ruang kerja." },
@@ -54,6 +55,48 @@
     { "id": "obj_3", "text": "Interogasi Rahmat tentang alibinya", "hint": "Gunakan Interrogation Room" },
     { "id": "obj_4", "text": "Cari rekaman log keamanan", "hint": "Buka Evidence Locker" },
     { "id": "obj_5", "text": "Ajukan tuduhan terhadap pelaku", "hint": "Gunakan Accusation Form" }
-  ]
+  ],
+  "crime_scene": {
+    "description": "Ruang kerja Haryanto Wijaya. Meja besar dari kayu jati, laci setengah terbuka. Gelas brandy tergeletak di lantai. Jendela di sisi utara terbuka, angin malam menerpa tirai. Di sudut ruangan, lemari arsip dengan beberapa laci terkunci.",
+    "image_placeholder": "Ruang Kerja – Wisma Angker, 14 Juni 1979",
+    "hotspots": [
+      {
+        "id": "hotspot_meja",
+        "label": "Meja Kerja",
+        "x": 25,
+        "y": 55,
+        "evidence_unlock": "buku_besar",
+        "narrative": "Anda memeriksa laci meja kerja Haryanto. Di bawah tumpukan kertas tagihan, Anda menemukan buku besar keuangan dengan catatan penggelapan dana. Beberapa halaman ditandai dengan tinta merah.",
+        "already_found_message": "Anda sudah mengambil buku besar dari sini. Laci sekarang kosong."
+      },
+      {
+        "id": "hotspot_jendela",
+        "label": "Jendela",
+        "x": 85,
+        "y": 15,
+        "evidence_unlock": "log_keamanan",
+        "narrative": "Anda memeriksa ambang jendela. Ada bekas sepatu berlumpur dan sobekan kertas kecil bertuliskan jadwal patroli malam satpam. Seseorang masuk melalui jendela ini malam itu.",
+        "already_found_message": "Jendela masih terbuka, tapi Anda sudah mengumpulkan semua petunjuk dari sini."
+      },
+      {
+        "id": "hotspot_gelas",
+        "label": "Gelas Brandy",
+        "x": 60,
+        "y": 70,
+        "evidence_unlock": null,
+        "narrative": "Gelas brandy dengan residu sianida masih tergeletak di samping meja. Ini sudah dicatat dalam laporan otopsi. Tidak ada petunjuk baru di sini.",
+        "already_found_message": null
+      },
+      {
+        "id": "hotspot_lemari",
+        "label": "Lemari Arsip",
+        "x": 15,
+        "y": 20,
+        "evidence_unlock": "surat_ancaman",
+        "narrative": "Anda membuka lemari arsip. Di antara dokumen-dokumen tua, Anda menemukan surat ancaman tanpa tanda tangan: 'Hutang darah harus dibayar. Malam ini, semua berakhir.'",
+        "already_found_message": "Lemari arsip sudah Anda periksa. Tidak ada yang tersisa."
+      }
+    ]
+  }
 }
 

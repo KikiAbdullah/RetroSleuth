@@ -17,7 +17,9 @@ class Store {
       interrogationStates: {},
       accusationAttempts: 0,
       caseStatus: 'inactive',
-      completedObjectives: []
+      completedObjectives: [],
+      briefingRead: false,
+      interrogationFirstDone: {}
     };
   }
 
@@ -42,11 +44,32 @@ class Store {
             anger: 5
           };
           this.state.chatHistories[char.id] = [];
+          this.state.interrogationFirstDone[char.id] = false;
         });
     }
 
     this.save();
     eventBus.emit('state:updated', this.state);
+  }
+
+  addEvidence(id) {
+    if (!this.state.discoveredEvidence.includes(id)) {
+      this.state.discoveredEvidence.push(id);
+      this.save();
+      eventBus.emit('evidence:unlocked', { evidenceId: id });
+    }
+  }
+
+  // Method instance untuk dipanggil melalui instance gameState
+  unlockEvidence(evidenceId) {
+    this.addEvidence(evidenceId);
+  }
+
+  // Method static untuk kompatibilitas
+  static unlockEvidence(evidenceId) {
+    if (gameState) {
+        gameState.addEvidence(evidenceId);
+    }
   }
 
   getChatHistory(suspectId) {
@@ -84,14 +107,6 @@ class Store {
     );
   }
 
-  addEvidence(id) {
-    if (!this.state.discoveredEvidence.includes(id)) {
-      this.state.discoveredEvidence.push(id);
-      this.save();
-      eventBus.emit('evidence:discovered', id);
-    }
-  }
-
   markObjective(id, completed) {
     if (completed) {
       if (!this.state.completedObjectives.includes(id)) this.state.completedObjectives.push(id);
@@ -118,6 +133,8 @@ class Store {
     state.accusationAttempts = data.accusationAttempts || 0;
     state.caseStatus = data.caseStatus || 'active';
     state.completedObjectives = data.completedObjectives || [];
+    state.briefingRead = data.briefingRead || false;
+    state.interrogationFirstDone = data.interrogationFirstDone || {};
     eventBus.emit('state:restored');
   }
 }

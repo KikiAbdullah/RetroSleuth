@@ -87,6 +87,12 @@ export class CaseHub {
       btn.addEventListener('click', (e) => {
         const action = e.target.dataset.action;
         if (action === 'briefing') {
+          if (!gameState.state.briefingRead) {
+            gameState.state.briefingRead = true;
+            const initialEvidence = this.currentCase.manifest.initial_evidence || [];
+            initialEvidence.forEach(id => gameState.unlockEvidence(id));
+            gameState.save();
+          }
           eventBus.emit('navigate:briefing', {});
         } else if (action === 'solution') {
           eventBus.emit('navigate:solution', {});

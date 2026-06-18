@@ -7,13 +7,14 @@ export class DesktopManager {
     this.icons = [
       { id: 'case-files', label: 'Case Files', icon: '📁' },
       { id: 'evidence', label: 'Evidence', icon: '🔍' },
+      { id: 'crime-scene', label: 'Crime Scene', icon: '🔎' },
       { id: 'dossier', label: 'Dossier', icon: '👤' },
       { id: 'timeline', label: 'Timeline', icon: '📅' },
-      { id: 'objectives', label: 'Objectives', icon: '📋' },
       { id: 'notes', label: 'Notes', icon: '📝' },
       { id: 'accusation', label: 'Accusation', icon: '⚖️' },
       { id: 'settings', label: 'Settings', icon: '⚙️' }
     ];
+
     
     this.render();
   }
