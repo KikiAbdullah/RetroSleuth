@@ -63,7 +63,7 @@
     display: none;
   }
 
-  body.mobile-mode .interrogation-input {
+  body.mobile-mode .chat-input {
     font-size: 16px;
   }
 }
