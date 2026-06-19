@@ -12,10 +12,21 @@
   "public_background": "Pelayan setia, 30 tahun mengabdi.",
   "private_background": "Anaknya meninggal karena Haryanto tak memberi uang pengobatan.",
   "known_facts": ["Sari membawa brandy", "Mendengar pertengkaran"],
-  "truths": ["Menemukan mayat pukul 02.00 setelah menunggu", "Membersihkan gelas lain"],
+  "truths": [
+    "Menemukan mayat pukul 02.00 setelah menunggu",
+    "Membersihkan gelas lain"
+  ],
   "secrets": [
-    { "id": "dendam_anak", "condition": "Pemain bertanya keluarga/motivasi", "detail": "Anaknya meninggal, ingin Haryanto menderita." },
-    { "id": "melihat_racun", "condition": "Pemain menunjukkan bukti sianida", "detail": "Melihat Sari menaruh sesuatu ke gelas." }
+    {
+      "id": "dendam_anak",
+      "condition": "Pemain bertanya keluarga/motivasi",
+      "detail": "Anaknya meninggal, ingin Haryanto menderita."
+    },
+    {
+      "id": "melihat_racun",
+      "condition": "Pemain menunjukkan bukti sianida",
+      "detail": "Melihat Sari menaruh sesuatu ke gelas."
+    }
   ],
   "reactions_to_evidence": {
     "laporan_otopsi": "Keadilan...",

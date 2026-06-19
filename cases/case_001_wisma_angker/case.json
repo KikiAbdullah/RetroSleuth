@@ -3,10 +3,11 @@
   "meta": {
     "title": "Malam di Wisma Angker",
     "author": "Tim RetroSleuth",
-    "version": "1.0",
-    "difficulty": "Medium",
-    "estimated_time": "45-60 min",
-    "year": 1979
+    "version": "2.0",
+    "difficulty": "Hard",
+    "estimated_time": "60-90 min",
+    "year": 1979,
+    "description": "Seorang pengusaha kaya ditemukan tewas di ruang kerjanya yang terkunci. Tiga tersangka, satu kebenaran."
   },
   "victim": {
     "name": "Haryanto Wijaya",
@@ -23,80 +24,437 @@
     "images_directory": "images"
   },
   "evidence_registry": [
-    { "id": "laporan_otopsi", "title": "Laporan Otopsi", "file": "laporan_otopsi.md", "icon": "📄" },
-    { "id": "buku_besar", "title": "Buku Besar", "file": "buku_besar.md", "icon": "📒" },
-    { "id": "log_keamanan", "title": "Log Keamanan", "file": "log_keamanan.md", "icon": "🛡️" },
-    { "id": "surat_ancaman", "title": "Surat Ancaman", "file": "surat_ancaman.md", "icon": "✉️" },
-    { "id": "laporan_saksi", "title": "Laporan Saksi", "file": "laporan_saksi.md", "icon": "👥" }
+    {
+      "id": "laporan_otopsi",
+      "title": "Laporan Otopsi",
+      "file": "laporan_otopsi.md",
+      "icon": "📄",
+      "description_short": "Hasil forensik resmi korban."
+    },
+    {
+      "id": "buku_besar",
+      "title": "Buku Besar Keuangan Rahasia",
+      "file": "buku_besar.md",
+      "icon": "📒",
+      "description_short": "Catatan keuangan gelap Haryanto."
+    },
+    {
+      "id": "log_keamanan",
+      "title": "Log Keamanan Gerbang",
+      "file": "log_keamanan.md",
+      "icon": "🛡️",
+      "description_short": "Catatan keluar masuk kendaraan."
+    },
+    {
+      "id": "surat_ancaman",
+      "title": "Surat Ancaman",
+      "file": "surat_ancaman.md",
+      "icon": "✉️",
+      "description_short": "Surat tanpa nama yang mengancam korban."
+    },
+    {
+      "id": "laporan_saksi",
+      "title": "Laporan Saksi",
+      "file": "laporan_saksi.md",
+      "icon": "👥",
+      "description_short": "Kesaksian pembantu dapur tentang malam kejadian."
+    },
+    {
+      "id": "resep_racun",
+      "title": "Resep Racun",
+      "file": "resep_racun.md",
+      "icon": "🧪",
+      "description_short": "Catatan tentang senyawa sianida."
+    },
+    {
+      "id": "buku_tamu",
+      "title": "Buku Tamu Wisma",
+      "file": "buku_tamu.md",
+      "icon": "📖",
+      "description_short": "Daftar tamu yang datang malam itu."
+    },
+    {
+      "id": "rekening_koran",
+      "title": "Potongan Koran",
+      "file": "rekening_koran.md",
+      "icon": "📰",
+      "description_short": "Koran lama tentang kebangkrutan perusahaan."
+    },
+    {
+      "id": "kunci_cadangan",
+      "title": "Kunci Cadangan Ruang Kerja",
+      "file": "kunci_cadangan.md",
+      "icon": "🔑",
+      "description_short": "Kunci duplikat yang ditemukan di laci."
+    }
   ],
+  "evidence_structure": {
+    "Dokumen": [
+      "laporan_otopsi",
+      "surat_ancaman",
+      "laporan_saksi",
+      "resep_racun",
+      "rekening_koran"
+    ],
+    "Log": ["log_keamanan", "buku_tamu"],
+    "Barang": ["buku_besar", "kunci_cadangan"]
+  },
   "characters": [
-    { "id": "rahmat", "name": "Rahmat", "role": "Keponakan" },
-    { "id": "sari", "name": "Sari", "role": "Istri Korban" },
-    { "id": "budi", "name": "Budi", "role": "Kepala Pelayan" }
+    {
+      "id": "rahmat",
+      "name": "Rahmat",
+      "role": "Keponakan / Akuntan",
+      "file": "characters/rahmat.json",
+      "photo": "images/rahmat.png"
+    },
+    {
+      "id": "sari",
+      "name": "Sari",
+      "role": "Istri Korban",
+      "file": "characters/sari.json",
+      "photo": "images/sari.png"
+    },
+    {
+      "id": "budi",
+      "name": "Budi",
+      "role": "Kepala Pelayan",
+      "file": "characters/budi.json",
+      "photo": "images/budi.png"
+    }
   ],
   "solution_matrix": {
     "culprit_id": "sari",
     "motive": "Warisan dan dendam",
     "primary_evidence": "laporan_otopsi",
-    "secondary_evidence": ["buku_besar", "log_keamanan"],
+    "secondary_evidence": [
+      "buku_besar",
+      "log_keamanan",
+      "surat_ancaman",
+      "resep_racun"
+    ],
     "explanation_file": "solution.md"
   },
   "initial_evidence": ["laporan_otopsi"],
   "timeline": [
-    { "time": "21:30", "description": "Haryanto masuk ke ruang kerja sendirian." },
-    { "time": "22:00", "description": "Sari membawakan baki minuman brandy ke ruang kerja." },
-    { "time": "22:15", "description": "Budi mendengar suara gelas pecah dari luar ruangan." },
-    { "time": "22:45", "description": "Seseorang terlihat memanjat jendela sayap timur." },
-    { "time": "02:00", "description": "Budi menemukan jenazah Haryanto." }
+    {
+      "time": "21:30",
+      "description": "Haryanto masuk ke ruang kerja sendirian."
+    },
+    {
+      "time": "22:00",
+      "description": "Sari membawakan baki minuman brandy ke ruang kerja."
+    },
+    {
+      "time": "22:15",
+      "description": "Budi mendengar suara gelas pecah dari luar ruangan."
+    },
+    {
+      "time": "22:30",
+      "description": "Pembantu dapur mendengar pertengkaran keras, suara perempuan."
+    },
+    {
+      "time": "22:45",
+      "description": "Rahmat terlihat memanjat jendela sayap timur dan segera pergi."
+    },
+    {
+      "time": "23:15",
+      "description": "Mobil Rahmat tercatat keluar oleh satpam gerbang."
+    },
+    {
+      "time": "02:00",
+      "description": "Budi menemukan jenazah Haryanto dan melapor."
+    }
   ],
   "objectives": [
-    { "id": "obj_1", "text": "Baca laporan briefing kasus", "hint": "Cari di Case Files" },
-    { "id": "obj_2", "text": "Periksa laporan otopsi korban", "hint": "Buka Evidence Locker" },
-    { "id": "obj_3", "text": "Interogasi Rahmat tentang alibinya", "hint": "Gunakan Interrogation Room" },
-    { "id": "obj_4", "text": "Cari rekaman log keamanan", "hint": "Buka Evidence Locker" },
-    { "id": "obj_5", "text": "Ajukan tuduhan terhadap pelaku", "hint": "Gunakan Accusation Form" }
+    {
+      "id": "obj_1",
+      "text": "Baca laporan briefing kasus",
+      "hint": "Buka Case Files dari desktop, lalu klik '📄 Baca Briefing'."
+    },
+    {
+      "id": "obj_2",
+      "text": "Periksa laporan otopsi korban",
+      "hint": "Setelah briefing dibaca, laporan otopsi muncul otomatis di File Manager > folder Dokumen."
+    },
+    {
+      "id": "obj_3",
+      "text": "Selidiki TKP dan kumpulkan bukti",
+      "hint": "Buka Crime Scene dari desktop, klik area dan periksa setiap objek."
+    },
+    {
+      "id": "obj_4",
+      "text": "Interogasi Rahmat tentang buku besar",
+      "hint": "Tanyakan pada Rahmat tentang 'buku besar' atau 'keuangan'."
+    },
+    {
+      "id": "obj_5",
+      "text": "Interogasi Sari tentang alibinya",
+      "hint": "Tanyakan pada Sari di mana dia saat kejadian."
+    },
+    {
+      "id": "obj_6",
+      "text": "Interogasi Budi tentang surat ancaman",
+      "hint": "Budi mungkin tahu tentang surat ancaman di lemari arsip."
+    },
+    {
+      "id": "obj_7",
+      "text": "Ajukan tuduhan terhadap pelaku",
+      "hint": "Setelah mengumpulkan minimal 5 bukti, buka Accusation Form dan pilih pelaku, motif, serta bukti pendukung."
+    }
   ],
   "crime_scene": {
-    "description": "Ruang kerja Haryanto Wijaya. Meja besar dari kayu jati, laci setengah terbuka. Gelas brandy tergeletak di lantai. Jendela di sisi utara terbuka, angin malam menerpa tirai. Di sudut ruangan, lemari arsip dengan beberapa laci terkunci.",
+    "description": "Ruang Kerja Haryanto Wijaya. Sebuah ruangan mewah dengan meja kayu jati, laci setengah terbuka, gelas brandy di lantai, jendela terbuka, lemari arsip tua, dan pintu kayu kokoh menuju koridor. Ada banyak benda yang bisa diperiksa.",
+    "map_type": "terminal_grid",
     "image_placeholder": "Ruang Kerja – Wisma Angker, 14 Juni 1979",
-    "hotspots": [
+    "grid_size": { "cols": 40, "rows": 15 },
+    "areas": [
       {
-        "id": "hotspot_meja",
-        "label": "Meja Kerja",
-        "x": 25,
-        "y": 55,
-        "evidence_unlock": "buku_besar",
-        "narrative": "Anda memeriksa laci meja kerja Haryanto. Di bawah tumpukan kertas tagihan, Anda menemukan buku besar keuangan dengan catatan penggelapan dana. Beberapa halaman ditandai dengan tinta merah.",
-        "already_found_message": "Anda sudah mengambil buku besar dari sini. Laci sekarang kosong."
+        "name": "Meja Kerja",
+        "short_desc": "Meja kayu jati besar dengan laci setengah terbuka. Banyak berkas berserakan.",
+        "objects": [
+          {
+            "id": "laci_buku",
+            "label": "🔓 Buka laci besar",
+            "type": "evidence",
+            "evidence_unlock": "buku_besar",
+            "narrative": "Anda membuka laci utama. Di dalamnya terselip sebuah buku besar tebal dengan catatan keuangan gelap dan transaksi mencurigakan."
+          },
+          {
+            "id": "kertas_tagihan",
+            "label": "📄 Periksa tumpukan kertas di atas meja",
+            "type": "red_herring",
+            "narrative": "Kertas-kertas itu adalah tagihan listrik, air, dan telepon. Tidak ada yang mencurigakan, hanya catatan rutin rumah tangga."
+          },
+          {
+            "id": "map_kuning",
+            "label": "📁 Buka map kuning",
+            "type": "red_herring",
+            "narrative": "Map kuning berisi proposal bisnis tekstil yang sudah usang. Tidak relevan dengan kasus ini."
+          },
+          {
+            "id": "kotak_rokok",
+            "label": "🚬 Periksa kotak rokok",
+            "type": "clue",
+            "narrative": "Kotak rokok mahal, masih setengah penuh. Ada inisial 'H.W.' di sampingnya. Di bawah kotak ada secarik kertas bertuliskan 'Sari - 22:00'."
+          },
+          {
+            "id": "pena_gambar",
+            "label": "🖊️ Periksa pena di atas meja",
+            "type": "red_herring",
+            "narrative": "Pena mahal berbahan emas. Tinta biru. Tidak ada yang istimewa."
+          },
+          {
+            "id": "laci_kecil",
+            "label": "🔓 Buka laci kecil samping",
+            "type": "evidence",
+            "evidence_unlock": "kunci_cadangan",
+            "narrative": "Laci kecil tersembunyi di samping meja. Di dalamnya ada kunci cadangan ruang kerja yang hilang."
+          },
+          {
+            "id": "amplop_tertutup",
+            "label": "✉️ Buka amplop tertutup",
+            "type": "clue",
+            "narrative": "Amplop berisi foto Haryanto dengan seorang wanita asing di restoran. Di belakang foto tertulis 'Rahasia, jangan sampai Sari tahu'."
+          },
+          {
+            "id": "kalender_dinding",
+            "label": "📅 Periksa kalender dinding",
+            "type": "red_herring",
+            "narrative": "Kalender menandai tanggal 14 Juni dengan lingkaran merah. Tidak ada catatan khusus."
+          }
+        ]
       },
       {
-        "id": "hotspot_jendela",
-        "label": "Jendela",
-        "x": 85,
-        "y": 15,
-        "evidence_unlock": "log_keamanan",
-        "narrative": "Anda memeriksa ambang jendela. Ada bekas sepatu berlumpur dan sobekan kertas kecil bertuliskan jadwal patroli malam satpam. Seseorang masuk melalui jendela ini malam itu.",
-        "already_found_message": "Jendela masih terbuka, tapi Anda sudah mengumpulkan semua petunjuk dari sini."
+        "name": "Jendela",
+        "short_desc": "Jendela besar dengan kaca buram, terbuka setengah. Ada bekas lumpur di ambang.",
+        "objects": [
+          {
+            "id": "bekas_lumpur",
+            "label": "👣 Periksa bekas lumpur",
+            "type": "clue",
+            "narrative": "Bekas sepatu ukuran 42 dengan pola sol khas. Terlihat seperti sepatu yang biasa dipakai Rahmat."
+          },
+          {
+            "id": "sobekan_kertas",
+            "label": "📄 Ambil sobekan kertas",
+            "type": "evidence",
+            "evidence_unlock": "log_keamanan",
+            "narrative": "Sobekan kertas jadwal patroli satpam dan catatan waktu kendaraan masuk. Tertulis 'Rahmat keluar 23:15'."
+          },
+          {
+            "id": "gorden_robek",
+            "label": "🧵 Periksa gorden robek",
+            "type": "red_herring",
+            "narrative": "Gorden robek di bagian bawah. Mungkin bekas gesekan saat seseorang melompat. Tidak ada bukti penting."
+          },
+          {
+            "id": "serat_kain",
+            "label": "🧶 Ambil serat kain di kaca",
+            "type": "clue",
+            "narrative": "Serat kain berwarna biru tua. Cocok dengan seragam satpam. Apakah satpam pernah ke sini?"
+          },
+          {
+            "id": "debu_jendela",
+            "label": "🔍 Periksa debu di ambang",
+            "type": "red_herring",
+            "narrative": "Debu tebal, menunjukkan jendela jarang dibuka. Tapi ada jejak tangan segar di kaca."
+          },
+          {
+            "id": "kaca_pecah",
+            "label": "💠 Periksa kaca pecah kecil",
+            "type": "clue",
+            "narrative": "Pecahan kaca kecil di lantai dekat jendela. Bisa jadi dari gelas yang jatuh. Ada bau almond samar."
+          },
+          {
+            "id": "bungkus_permen",
+            "label": "🍬 Periksa bungkus permen",
+            "type": "red_herring",
+            "narrative": "Bungkus permen mint. Tidak ada yang istimewa."
+          }
+        ]
       },
       {
-        "id": "hotspot_gelas",
-        "label": "Gelas Brandy",
-        "x": 60,
-        "y": 70,
-        "evidence_unlock": null,
-        "narrative": "Gelas brandy dengan residu sianida masih tergeletak di samping meja. Ini sudah dicatat dalam laporan otopsi. Tidak ada petunjuk baru di sini.",
-        "already_found_message": null
+        "name": "Lemari Arsip",
+        "short_desc": "Lemari besi tua dengan empat laci. Beberapa laci terkunci. Ada goresan di permukaan.",
+        "objects": [
+          {
+            "id": "laci_atas",
+            "label": "🔓 Buka laci atas (terkunci)",
+            "type": "locked",
+            "narrative": "Laci atas terkunci. Anda memerlukan kunci atau alat khusus untuk membukanya."
+          },
+          {
+            "id": "laci_kedua",
+            "label": "🔓 Buka laci kedua (terkunci)",
+            "type": "locked",
+            "narrative": "Laci kedua terkunci. Ada tulisan 'Sari' di samping kunci."
+          },
+          {
+            "id": "laci_ketiga",
+            "label": "🔓 Buka laci ketiga",
+            "type": "evidence",
+            "evidence_unlock": "surat_ancaman",
+            "narrative": "Laci ketiga terbuka paksa. Di dalamnya tersimpan surat ancaman tanpa tanda tangan, berisi ancaman pembunuhan untuk Haryanto."
+          },
+          {
+            "id": "laci_bawah",
+            "label": "📂 Buka laci bawah",
+            "type": "red_herring",
+            "narrative": "Laci bawah berisi berkas-berkas pajak tahun 1970-1975. Tidak ada hubungannya dengan kasus."
+          },
+          {
+            "id": "goresan_pintu",
+            "label": "🔍 Periksa goresan di permukaan",
+            "type": "clue",
+            "narrative": "Goresan segar di sekitar gagang laci. Seseorang mencoba membobol lemari dengan obeng. Ada serpihan cat di lantai."
+          },
+          {
+            "id": "amplop_coklat",
+            "label": "📩 Ambil amplop coklat di atas lemari",
+            "type": "clue",
+            "narrative": "Amplop coklat berisi foto Rahmat sedang bertemu dengan seseorang di parkiran. Waktu foto sekitar pukul 22:45."
+          },
+          {
+            "id": "paku_besi",
+            "label": "🔩 Periksa paku besi di lantai",
+            "type": "red_herring",
+            "narrative": "Paku besi berkarat. Tidak relevan."
+          }
+        ]
       },
       {
-        "id": "hotspot_lemari",
-        "label": "Lemari Arsip",
-        "x": 15,
-        "y": 20,
-        "evidence_unlock": "surat_ancaman",
-        "narrative": "Anda membuka lemari arsip. Di antara dokumen-dokumen tua, Anda menemukan surat ancaman tanpa tanda tangan: 'Hutang darah harus dibayar. Malam ini, semua berakhir.'",
-        "already_found_message": "Lemari arsip sudah Anda periksa. Tidak ada yang tersisa."
+        "name": "Pintu Masuk",
+        "short_desc": "Pintu kayu jati besar dengan gagang kuningan. Ada lubang kunci kecil. Koridor di luar.",
+        "objects": [
+          {
+            "id": "gagang_pintu",
+            "label": "🔍 Periksa gagang pintu",
+            "type": "clue",
+            "narrative": "Gagang pintu berkilau, baru dipoles. Ada sidik jari samar di permukaan."
+          },
+          {
+            "id": "lubang_kunci",
+            "label": "🔑 Periksa lubang kunci",
+            "type": "clue",
+            "narrative": "Lubang kunci kecil. Ada goresan baru di sekitar kunci, seperti seseorang mencoba masuk dengan kunci palsu."
+          },
+          {
+            "id": "pembantu_dapur",
+            "label": "👩‍🍳 Bicara dengan pembantu dapur",
+            "type": "evidence",
+            "evidence_unlock": "laporan_saksi",
+            "narrative": "Pembantu dapur bernama Marni terlihat gugup. Dia berkata, 'Saya mendengar pertengkaran keras sekitar jam 10:30 malam. Suara perempuan berteriak... Sari, saya yakin itu Sari.'"
+          },
+          {
+            "id": "koran_depan",
+            "label": "📰 Ambil koran di depan pintu",
+            "type": "evidence",
+            "evidence_unlock": "rekening_koran",
+            "narrative": "Koran lama tergeletak di depan pintu. Halaman tengah membahas kebangkrutan perusahaan tekstil milik Haryanto. Ada ancaman dari serikat pekerja."
+          },
+          {
+            "id": "sepatu_wanita",
+            "label": "👠 Periksa sepatu wanita di sudut",
+            "type": "clue",
+            "narrative": "Sepatu hak tinggi mahal. Ukuran 37. Sering dipakai Sari."
+          },
+          {
+            "id": "botol_minuman",
+            "label": "🍾 Periksa botol minuman kosong",
+            "type": "red_herring",
+            "narrative": "Botol minuman soda kosong. Tidak ada kaitannya."
+          },
+          {
+            "id": "catatan_kecil",
+            "label": "📝 Ambil catatan kecil di lantai",
+            "type": "clue",
+            "narrative": "Catatan kecil dengan tulisan tangan Haryanto: 'Sari, tolong jangan lakukan ini. Kita bicara malam ini.'"
+          }
+        ]
+      },
+      {
+        "name": "Rak Buku (Sudut Ruangan)",
+        "short_desc": "Rak buku tinggi penuh dengan buku-buku tua dan barang-barang antik.",
+        "objects": [
+          {
+            "id": "buku_ilmu_pengetahuan",
+            "label": "📖 Buka buku ilmu pengetahuan",
+            "type": "red_herring",
+            "narrative": "Buku kimia kuno. Ada halaman yang dilipat tentang senyawa sianida. Tapi tidak ada catatan tambahan."
+          },
+          {
+            "id": "patung_kecil",
+            "label": "🗿 Periksa patung kecil",
+            "type": "clue",
+            "narrative": "Patung kecil dari perunggu. Ada rambut yang tersangkut di pangkalnya. Rambut hitam panjang, seperti milik Sari."
+          },
+          {
+            "id": "kotak_musik",
+            "label": "🎵 Buka kotak musik",
+            "type": "red_herring",
+            "narrative": "Kotak musik antik dimainkan, terdengar lagu lama. Tidak ada yang aneh."
+          },
+          {
+            "id": "buku_harian",
+            "label": "📕 Baca buku harian",
+            "type": "evidence",
+            "evidence_unlock": "resep_racun",
+            "narrative": "Buku harian Haryanto. Halaman terakhir bertanggal 13 Juni: 'Sari mengancam akan meracuni saya. Dia tahu semuanya.'"
+          },
+          {
+            "id": "vas_kaca",
+            "label": "🏺 Periksa vas kaca",
+            "type": "red_herring",
+            "narrative": "Vas kaca bening, berisi air kotor. Tidak ada bukti penting."
+          },
+          {
+            "id": "foto_berbingkai",
+            "label": "🖼️ Periksa foto berbingkai",
+            "type": "clue",
+            "narrative": "Foto Haryanto dan Sari di pernikahan mereka. Di balik bingkai ada tulisan 'Aku menyesal' dengan pena merah."
+          }
+        ]
       }
     ]
   }
 }
-
